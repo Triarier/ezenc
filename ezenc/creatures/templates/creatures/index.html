@@ -1,0 +1,17 @@
+{% if creature_list %}
+  <ul>
+    {% for creature in creature_list %}
+      <li><a href="/creatures/{{ creature.id }}/">{{ creature.name }}</a>
+        <ul>
+          <li> {{ creature.description }} </li>
+          <li> {{ creature.hit_points }} </li>
+          <li> {{ creature.hit_dice }} </li>
+          <li> {{ creature.armor_class }} </li>
+          <li> {{ creature.speed }} </li>
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No creatures are available.</p>
+{% endif %}
