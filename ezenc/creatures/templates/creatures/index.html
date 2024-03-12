@@ -1,17 +1,31 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'creatures/style.css' %}">
+
 {% if creature_list %}
-  <ul>
-    {% for creature in creature_list %}
-      <li><a href="/creatures/{{ creature.id }}/">{{ creature.name }}</a>
-        <ul>
-          <li> {{ creature.description }} </li>
-          <li> {{ creature.hit_points }} </li>
-          <li> {{ creature.hit_dice }} </li>
-          <li> {{ creature.armor_class }} </li>
-          <li> {{ creature.speed }} </li>
-        </ul>
-      </li>
-    {% endfor %}
-  </ul>
+  {% for creature in creature_list %}
+    <div>
+      <table>
+        <tr>
+          <td><a href="/creatures/{{ creature.id }}/">{{ creature.name }}</a></td>
+          <td>{{ creature.radar| safe }}</td>
+        </tr>
+        <tr>
+          <td>
+            <ul>
+              <li>Hitpoints: {{ creature.hit_points }}</li>
+              <li>Hitdice: {{ creature.hit_dice }}</li>
+              <li>AC: {{ creature.armor_class }}</li>
+              <li>Speed: {{ creature.speed }}</li>
+            </ul>
+          </td>
+          <td>{{ creature.description }}</td>
+        </tr>
+        <tr>
+        </tr>
+      </table>
+    </div>
+  {% endfor %}
 {% else %}
   <p>No creatures are available.</p>
 {% endif %}
